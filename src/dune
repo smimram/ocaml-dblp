@@ -1,5 +1,6 @@
 (library
  (name dblp)
  (package dblp)
+ (wrapped false)
  (libraries unix)
 )
