@@ -1,0 +1,7 @@
+(executable
+ (public_name dblp-query)
+ (name dblp)
+ (package dblp-query)
+ (libraries dblp)
+ (modules query)
+)
