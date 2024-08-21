@@ -12,7 +12,7 @@ jobs:
         ocaml-compiler: 5
     - name: Install dependencies
       run: |
-        opam install tls
+        opam install tls-lwt
         opam install . --deps-only --with-doc --with-test
     - name: Build
       run: opam exec -- dune build
