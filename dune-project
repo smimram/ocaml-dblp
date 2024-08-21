@@ -6,7 +6,7 @@
 (maintainers "Samuel Mimram")
 (license LGPL-3.0)
 
-(documentation https://url/to/documentation)
+(documentation https://smimram.github.io/ocaml-dblp/)
 
 (package
  (name dblp)
@@ -18,6 +18,7 @@
 (package
  (name dblp-query)
  (synopsis "Commandline program do query the DBLP bibliographic database")
+ (description "Program to query the DBLP bibliographic database and find authors, publications, and venues. It is particularily useful in order to retrieve bibtex entries.")
  (depends dblp)
 )
 
