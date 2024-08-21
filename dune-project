@@ -12,7 +12,7 @@
  (name dblp)
  (synopsis "Library to query the DBLP bibliographic database")
  (description "The library provides helper functions to query the DBLP bibliographic database (authors, publications, and venue).")
- (depends cohttp cohttp-lwt-unix yojson)
+ (depends cohttp cohttp-lwt-unix tls-lwt yojson)
 )
 
 (package

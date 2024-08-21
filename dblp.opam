@@ -13,6 +13,7 @@ depends: [
   "dune" {>= "3.15"}
   "cohttp"
   "cohttp-lwt-unix"
+  "tls-lwt"
   "yojson"
   "odoc" {with-doc}
 ]
