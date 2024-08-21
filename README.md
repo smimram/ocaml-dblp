@@ -93,6 +93,10 @@ $ dblp venue lics
 LICS: ACM/IEEE Symposium on Logic in Computer Science (LICS) (Conference or Workshop)
 ```
 
+## Improving
+
+We are open to suggestions and improvements: feel free to [file a bug report](issues)!
+
 ## See also
 
 - [dblp-python library](https://github.com/scholrly/dblp-python)
