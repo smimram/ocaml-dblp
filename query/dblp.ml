@@ -40,19 +40,45 @@ let () =
     if l = [] then no_result ();
     l
   in
-  match cmd with
-  | "find" ->
+  let publication () =
     let l = publications () in
-    print_publications l
-  | "bibtex" ->
-    let l = publications () in
-    if List.length l = 1 then print_string ((List.hd l).DBLP.publication_bib ())
+    if List.length l = 1 then List.hd l
     else
       (
         print_publications l;
-        let p = select "publication" l in
-        print_string (p.DBLP.publication_bib ())
+        select "publication" l
       )
+  in
+  match cmd with
+  | "publication"
+  | "find" ->
+    (* Find a publication. *)
+    let l = publications () in
+    print_publications l
+  | "bibtex" ->
+    (* Find a bibtex. *)
+    let p = publication () in
+    print_string (p.DBLP.publication_bib ())
+  | "bib" ->
+    (* Same as bibtex but adds to the bib file in the current directory. *)
+    let p = publication () in
+    let bib = Sys.readdir "." |> Array.to_list |> List.filter (fun f -> Filename.extension f = ".bib") in
+    let bib =
+      match List.length bib with
+      | 0 -> print_string "No bib file found in current directory, file to use: "; read_line ()
+      | 1 -> List.hd bib
+      | _ ->
+        print_endline "Found the following .bib files:";
+        List.iteri (fun i f -> Printf.printf "%d. %s\n%!" (i+1) f) bib;
+        select "bib file" bib
+    in
+    Printf.printf "Adding the following entry to %s:\n\n%!" bib;
+    let entry = p.DBLP.publication_bib () in
+    print_string entry;
+    let oc = open_out_gen [Open_wronly; Open_append; Open_creat] 0o644 bib in
+    output_string oc "\n";
+    output_string oc entry;
+    close_out oc
   | "author" ->
     let l = DBLP.author ?hits args in
     if l = [] then no_result ();

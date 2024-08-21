@@ -71,6 +71,12 @@ Select publication (default is first): 8
 }
 ```
 
+The `bib` command does pretty much the same but also adds the entry at the end of the `.bib` file in the current directory:
+
+```
+$ dblp bib mimram type
+```
+
 You can find an author with the `author` command:
 
 ```
