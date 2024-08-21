@@ -2,3 +2,8 @@
  (name test)
  (libraries dblp)
 )
+
+(rule
+ (alias runtest)
+ (action (run ./test.exe))
+)

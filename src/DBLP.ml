@@ -132,3 +132,23 @@ let string_of_publication p =
   let authors = p.publication_authors |> String.concat ", " in
   let pages = if p.publication_pages = "" then "" else p.publication_pages ^ ", " in
   Printf.sprintf "%s. %s %s, %s%d.\n%!" authors p.publication_title p.publication_venue pages p.publication_year
+
+type venue =
+  {
+    venue_name : string;
+    venue_acronym : string;
+    venue_type : string;
+    venue_url : string;
+  }
+
+let venue ?hits venue =
+  query_json ?hits `Venue venue |> json_hits |>
+  List.map (fun venue ->
+      let find k = List.assoc_opt k venue |> Option.map JSON.string |> Option.value ~default:"" in
+      {
+        venue_name = find "venue";
+        venue_acronym = find "acronym";
+        venue_type = find "type";
+        venue_url = find "url";
+      }
+    )
