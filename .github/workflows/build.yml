@@ -9,7 +9,8 @@ jobs:
     - name: Setup OCaml
       uses: ocaml/setup-ocaml@v3
       with:
-        ocaml-compiler: 5.0.x
+        ocaml-compiler: 5
+        dune-cache: true
     - name: Install dependencies
       run: opam install . --deps-only --with-doc --with-test
     - name: Build
