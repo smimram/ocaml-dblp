@@ -131,7 +131,7 @@ let publication ?hits query =
 let string_of_publication p =
   let authors = p.publication_authors |> String.concat ", " in
   let pages = if p.publication_pages = "" then "" else p.publication_pages ^ ", " in
-  Printf.sprintf "%s. %s %s, %s%d.\n%!" authors p.publication_title p.publication_venue pages p.publication_year
+  Printf.sprintf "%s. %s %s, %s%d." authors p.publication_title p.publication_venue pages p.publication_year
 
 type venue =
   {
