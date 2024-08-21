@@ -4,3 +4,18 @@
  (package dblp-cmdline)
  (libraries dblp)
 )
+
+(rule
+ (alias runtest)
+ (action (run ./dblp.exe author mimram))
+)
+
+(rule
+ (alias runtest)
+ (action (run ./dblp.exe find mimram type))
+)
+
+(rule
+ (alias runtest)
+ (action (run ./dblp.exe venue lics))
+)
