@@ -15,18 +15,14 @@ let select name l =
   let n = n-1 in
   try List.nth l n with _ -> invalid ()
 
-let print_publications l =
-  List.iteri
-    (fun i p ->
-       Printf.printf "%d. %s\n%!" (i+1) (DBLP.string_of_publication p) 
-    ) l
-
 let () =
   let cmd = ref "" in
   let args = ref [] in
   let hits = ref None in
+  let doi = ref false in
   let arg_speclist =
     [
+      "--doi", Arg.Set doi, "Show doi.";
       "--hits", Arg.Int (fun n -> hits := Some n), "Maximal number of hits (search results)."
     ]
   in
@@ -39,6 +35,17 @@ let () =
   let args = !args |> List.rev |> String.concat " " in
   let hits = !hits in
   if cmd = "" then error "Please provide a command.";
+  let print_publications ?(doi = !doi) l =
+    List.iteri
+      (fun i p ->
+         Printf.printf "%s%d. %s\n%!" (if i < 9 then " " else "") (i+1) (DBLP.string_of_publication p);
+         if doi then
+           (
+             let doi = p.DBLP.publication_doi in
+             if doi <> "" then print_string ("    http://doi.org/" ^ doi ^ "\n")
+           )
+      ) l
+  in
   let publications () =
     let l = DBLP.publication ?hits args in
     if l = [] then no_result ();
