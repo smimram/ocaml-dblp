@@ -7,17 +7,21 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
     - name: Setup OCaml
-      uses: ocaml/setup-ocaml@v2
+      uses: ocaml/setup-ocaml@v3
       with:
         ocaml-compiler: 5.0.x
-    - name: Pin locally
-      run: opam pin -y add -n .
-    - name: Build and test
-      run: opam install -y --with-doc --with-test dblp dblp-query
-    # - name: Upload website artifact
-      # uses: actions/upload-pages-artifact@v2
-      # with:
-        # path: docs
+    - name: Install dependencies
+      run: opam install . --deps-only --with-doc --with-test
+    - name: Build
+      run: opam exec -- dune build
+    - name: Test
+      run: opam exec -- dune runtest
+    - name: Build documentation
+      run: opam exec -- dune build @doc
+    - name: Upload website artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: _build/default/_doc/_html
   # deploy:
     # needs: build
     # permissions:
