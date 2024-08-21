@@ -27,6 +27,9 @@ module JSON = struct
   let associate k json =
     json |> assoc |> List.assoc k
 
+  let associate_opt k json =
+    json |> assoc |> List.assoc_opt k
+
   let string = function
     | `String s -> s
     | _ -> failwith "string expected"
@@ -61,12 +64,18 @@ let query_json ?hits kind q =
   query ?hits kind q |> JSON.of_string
 
 let json_hits json =
-  json
-  |> JSON.associate "result"
-  |> JSON.associate "hits"
-  |> JSON.associate "hit"
-  |> JSON.list
-  |> List.map (fun h -> h |> JSON.associate "info" |> JSON.assoc)
+  let hits =
+    json
+    |> JSON.associate "result"
+    |> JSON.associate "hits"
+    |> JSON.associate_opt "hit"
+  in
+  match hits with
+  | None -> []
+  | Some hits ->
+    hits
+    |> JSON.list
+    |> List.map (fun h -> h |> JSON.associate "info" |> JSON.assoc)
 
 type author =
   {
