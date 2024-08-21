@@ -11,7 +11,9 @@ jobs:
       with:
         ocaml-compiler: 5
     - name: Install dependencies
-      run: opam install . --deps-only --with-doc --with-test
+      run: |
+        opam install tls
+        opam install . --deps-only --with-doc --with-test
     - name: Build
       run: opam exec -- dune build
     - name: Test
