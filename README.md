@@ -86,4 +86,4 @@ LICS: ACM/IEEE Symposium on Logic in Computer Science (LICS) (Conference or Work
 
 ## See also
 
-- [Python library](https://github.com/scholrly/dblp-python)
+- [dblp-python library](https://github.com/scholrly/dblp-python)
