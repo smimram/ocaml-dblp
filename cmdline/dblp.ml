@@ -25,12 +25,16 @@ let () =
   let cmd = ref "" in
   let args = ref [] in
   let hits = ref None in
-  Arg.parse
+  let arg_speclist =
     [
       "--hits", Arg.Int (fun n -> hits := Some n), "Maximal number of hits (search results)."
     ]
+  in
+  let arg_usage = "dblp command arguments" in
+  Arg.parse
+    arg_speclist
     (fun s -> if !cmd = "" then cmd := s else args := s :: !args)
-    "dblp command arguments";
+    arg_usage;
   let cmd = !cmd in
   let args = !args |> List.rev |> String.concat " " in
   let hits = !hits in
@@ -50,6 +54,9 @@ let () =
       )
   in
   match cmd with
+  | "help" ->
+    print_endline (Arg.usage_string arg_speclist arg_usage);
+    exit 0
   | "publication"
   | "find" ->
     (* Find a publication. *)
