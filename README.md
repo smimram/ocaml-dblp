@@ -95,7 +95,7 @@ LICS: ACM/IEEE Symposium on Logic in Computer Science (LICS) (Conference or Work
 
 ## Improving
 
-We are open to suggestions and improvements: feel free to [file a bug report](issues)!
+We are open to suggestions and improvements: feel free to [file a bug report](https://github.com/smimram/ocaml-dblp/issues)!
 
 ## See also
 
