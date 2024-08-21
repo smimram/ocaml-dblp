@@ -1,3 +1,4 @@
+(*
 (** Download a webpage. *)
 let download host path =
   let addr = Unix.gethostbyname host in
@@ -21,8 +22,24 @@ let download host path =
   read ();
   Unix.close sock;
   Buffer.to_bytes buffer |> Bytes.to_string
+*)
 
-let query ?hits ?first ?completion kind q =
+let download url =
+  let download url =
+    let open Lwt in
+    let open Cohttp in
+    let open Cohttp_lwt_unix in
+    Client.get (Uri.of_string url) >>= fun (resp, body) ->
+    let code = resp |> Response.status |> Code.code_of_status in
+    (* Printf.printf "Response code: %d\n" code; *)
+    (* Printf.printf "Headers: %s\n" (resp |> Response.headers |> Header.to_string); *)
+    if code <> 200 then failwith (Printf.sprintf "Server response code was %d instead of expected 200" code);
+    body |> Cohttp_lwt.Body.to_string >|= fun body ->
+    body
+  in
+  Lwt_main.run (download url)
+
+let query ?hits ?first ?completion kind query =
   let hits =
     match hits with
     | Some h -> "h=" ^ string_of_int h ^ "&"
@@ -44,6 +61,25 @@ let query ?hits ?first ?completion kind q =
     | `Author -> "author"
     | `Venue -> "venue"
   in
-  let host = "dblp.org" in
-  let path = "/search/" ^ kind ^ "/api?" ^ hits ^ first ^ completion ^ "q=" ^ q in
-  download host path
+  let url = "https://dblp.org/search/" ^ kind ^ "/api?format=json&" ^ hits ^ first ^ completion ^ "q=" ^ query in
+  download url
+
+let query_json ?hits kind q =
+  query ?hits kind q |> Yojson.Basic.from_string
+
+let json_assoc k = function
+  | `Assoc a -> List.assoc k a
+  | _ -> failwith ("Assoc expected when looking for key " ^ k)
+
+let json_hits json =
+  json |> json_assoc "result" |> json_assoc "hits"
+
+type author =
+  {
+    name : string;
+    url : string;
+  }
+
+let author ?hits name =
+  let _json = query_json ?hits `Author name |> json_hits in
+  assert false

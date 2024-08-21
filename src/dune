@@ -2,5 +2,5 @@
  (name dblp)
  (package dblp)
  (wrapped false)
- (libraries unix)
+ (libraries cohttp cohttp-lwt-unix yojson)
 )
