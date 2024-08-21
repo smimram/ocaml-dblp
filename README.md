@@ -11,12 +11,12 @@ and should be fairly explicit and simple to use. To get started you can have a l
 - [the library documentation](https://smimram.github.io/ocaml-dblp/dblp/DBLP/)
 - [a simple example program](test/test.ml)
 
-## DBLP query program
+## DBLP commandline program
 
 We also provide a commandline program in order to query DBLP from the commandline. It can be installed with
 
 ```bash
-opam install dblp-query
+opam install dblp-cmdline
 ```
 
 It provides the `dblp` program which takes as argument a command (the kind of query you want to make) and a query (a list of words to look for).

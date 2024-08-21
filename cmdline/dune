@@ -1,6 +1,6 @@
 (executable
  (public_name dblp)
  (name dblp)
- (package dblp-query)
+ (package dblp-cmdline)
  (libraries dblp)
 )
