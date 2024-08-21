@@ -66,6 +66,7 @@ let json_hits json =
   |> JSON.associate "hits"
   |> JSON.associate "hit"
   |> JSON.list
+  |> List.map (fun h -> h |> JSON.associate "info" |> JSON.assoc)
 
 type author =
   {
@@ -76,9 +77,58 @@ type author =
 let author ?hits name =
   query_json ?hits `Author name |> json_hits |>
   List.map (fun author ->
-      let author = author |> JSON.associate "info" |> JSON.assoc in
+      let find k = List.assoc k author |> JSON.string in
       {
-        author_name = List.assoc "author" author |> JSON.string;
-        author_url = List.assoc  "url" author |> JSON.string
+        author_name = find "author";
+        author_url = find "url";
       }
     )
+
+type publication =
+  {
+    publication_authors : string list;
+    publication_title : string;
+    publication_venue : string;
+    publication_pages : string;
+    publication_year : int;
+    publication_type : string;
+    publication_key : string;
+    publication_doi : string;
+    publication_url : string;
+    publication_ee : string;
+    publication_access : string;
+    publication_bib : unit -> string;
+  }
+
+let publication ?hits query =
+  query_json ?hits `Publication query |> json_hits |>
+  List.map (fun publication ->
+      let find k = List.assoc_opt k publication |> Option.map JSON.string |> Option.value ~default:"" in
+      let publication_authors =
+        let author = List.assoc "authors" publication |> JSON.associate "author" in
+        match author with
+        | `List l -> List.map (fun a -> a |> JSON.associate "text" |> JSON.string) l
+        | `Assoc a -> [List.assoc "text" a |> JSON.string]
+        | _ -> assert false
+      in
+      let url = find "url" in
+      {
+        publication_authors;
+        publication_title = find "title";
+        publication_venue = find "venue";
+        publication_pages = find "pages";
+        publication_year = find "year" |> int_of_string;
+        publication_type = find "type";
+        publication_key = find "key";
+        publication_doi = find "doi";
+        publication_url = url;
+        publication_ee = find "ee";
+        publication_access = find "access";
+        publication_bib = fun () -> download (url ^ ".bib")
+      }
+    )
+
+let string_of_publication p =
+  let authors = p.publication_authors |> String.concat ", " in
+  let pages = if p.publication_pages = "" then "" else p.publication_pages ^ ", " in
+  Printf.sprintf "%s. %s %s, %s%d.\n%!" authors p.publication_title p.publication_venue pages p.publication_year
