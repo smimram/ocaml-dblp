@@ -6,7 +6,10 @@ OCaml library to use the API of the bibliographic [DBLP](http://dblp.org) databa
 - publications
 - venues
 
-and should be fairly explicit and simple to use.
+and should be fairly explicit and simple to use. To get started you can have a look at
+
+- [the library documentation](https://smimram.github.io/ocaml-dblp/)
+- [a simple example program](test/test.ml)
 
 ## DBLP query program
 
