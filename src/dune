@@ -1,6 +1,6 @@
 (library
+ (public_name dblp)
  (name dblp)
- (package dblp)
  (wrapped false)
  (libraries cohttp cohttp-lwt-unix yojson)
 )
