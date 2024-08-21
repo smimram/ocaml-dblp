@@ -1,5 +1,5 @@
 (executable
- (public_name dblp-query)
+ (public_name dblp)
  (name dblp)
  (package dblp-query)
  (libraries dblp)
