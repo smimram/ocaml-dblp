@@ -69,6 +69,11 @@ let () =
     (* Find a publication. *)
     let l = publications () in
     print_publications l
+  | "show" ->
+    (* Display the publication using doi. *)
+    let p = publication () in
+    let doi = p.DBLP.publication_doi in
+    Filename.quote_command "x-www-browser" ["http://doi.org/" ^ doi] |> Sys.command |> ignore
   | "bibtex" ->
     (* Find a bibtex. *)
     let p = publication () in

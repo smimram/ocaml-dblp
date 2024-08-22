@@ -37,6 +37,12 @@ $ dblp find mimram type
 9. Eric Finster, Samuel Mimram. A Type-Theoretical Definition of Weak ω-Categories. CoRR, 2017.
 ```
 
+You can show it (open in the browser) with the `show` command:
+
+```
+$ dblp show mimram type
+```
+
 You can find a bibtex with the `bibtex` command:
 
 ```
