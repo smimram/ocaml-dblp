@@ -20,10 +20,12 @@ let () =
   let args = ref [] in
   let hits = ref None in
   let doi = ref false in
+  let show = ref false in
   let arg_speclist =
     [
       "--doi", Arg.Set doi, "Show doi.";
-      "--hits", Arg.Int (fun n -> hits := Some n), "Maximal number of hits (search results)."
+      "--hits", Arg.Int (fun n -> hits := Some n), "Maximal number of hits (search results).";
+      "--show", Arg.Set show, "Show article.";
     ]
   in
   let arg_usage = "dblp command arguments" in
@@ -34,6 +36,7 @@ let () =
   let cmd = !cmd in
   let args = !args |> List.rev |> String.concat " " in
   let hits = !hits in
+  let show = !show in
   if cmd = "" then error "Please provide a command.";
   let print_publications ?(doi = !doi) l =
     List.iteri
@@ -60,6 +63,10 @@ let () =
         select "publication" l
       )
   in
+  let browse p =
+    let doi = p.DBLP.publication_doi in
+    Filename.quote_command "x-www-browser" ["http://doi.org/" ^ doi] |> Sys.command |> ignore
+  in
   match cmd with
   | "help" ->
     print_endline (Arg.usage_string arg_speclist arg_usage);
@@ -72,12 +79,12 @@ let () =
   | "show" ->
     (* Display the publication using doi. *)
     let p = publication () in
-    let doi = p.DBLP.publication_doi in
-    Filename.quote_command "x-www-browser" ["http://doi.org/" ^ doi] |> Sys.command |> ignore
+    browse p
   | "bibtex" ->
     (* Find a bibtex. *)
     let p = publication () in
-    print_string (p.DBLP.publication_bib ())
+    print_string (p.DBLP.publication_bib ());
+    if show then browse p
   | "bib" ->
     (* Same as bibtex but adds to the bib file in the current directory. *)
     let p = publication () in
@@ -97,7 +104,8 @@ let () =
     let oc = open_out_gen [Open_wronly; Open_append; Open_creat] 0o644 bib in
     output_string oc "\n";
     output_string oc entry;
-    close_out oc
+    close_out oc;
+    if show then browse p
   | "author" ->
     let l = DBLP.author ?hits args in
     if l = [] then no_result ();
