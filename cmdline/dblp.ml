@@ -87,7 +87,8 @@ let () =
     let p = publication () in
     print_string (p.DBLP.publication_bib ());
     if show then browse p
-  | "bib" ->
+  | "bib"
+  | "bibshow" ->
     (* Same as bibtex but adds to the bib file in the current directory. *)
     let p = publication () in
     let bib = Sys.readdir "." |> Array.to_list |> List.filter (fun f -> Filename.extension f = ".bib") in
@@ -107,7 +108,7 @@ let () =
     output_string oc "\n";
     output_string oc entry;
     close_out oc;
-    if show then browse p
+    if show || cmd = "bibshow" then browse p
   | "author" ->
     let l = DBLP.author ?hits args in
     if l = [] then no_result ();
