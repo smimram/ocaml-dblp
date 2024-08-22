@@ -39,13 +39,14 @@ let () =
   let show = !show in
   if cmd = "" then error "Please provide a command.";
   let print_publications ?(doi = !doi) l =
+    let n = List.length l in
     List.iteri
       (fun i p ->
-         Printf.printf "%s%d. %s\n%!" (if i < 9 then " " else "") (i+1) (DBLP.string_of_publication p);
+         Printf.printf "%s%d. %s\n%!" (if n > 9 && i < 9 then " " else "") (i+1) (DBLP.string_of_publication p);
          if doi then
            (
              let doi = p.DBLP.publication_doi in
-             if doi <> "" then print_string ("    http://doi.org/" ^ doi ^ "\n")
+             if doi <> "" then print_string ((if n > 9 then " " else "") ^ "   http://doi.org/" ^ doi ^ "\n")
            )
       ) l
   in
@@ -72,7 +73,8 @@ let () =
     print_endline (Arg.usage_string arg_speclist arg_usage);
     exit 0
   | "publication"
-  | "find" ->
+  | "find"
+  | "search" ->
     (* Find a publication. *)
     let l = publications () in
     print_publications l
