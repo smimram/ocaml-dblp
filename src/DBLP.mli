@@ -1,5 +1,7 @@
 (** Interface to the DBLP API. *)
 
+(** {1 Datatypes} *)
+
 (** An author. *)
 type author =
   {
@@ -7,6 +9,7 @@ type author =
     author_url : string; (** DBLP URL. *)
   }
 
+(** A publication. *)
 type publication =
   {
     publication_authors : string list; (** Author names. *)
@@ -34,6 +37,8 @@ type venue =
 
 (** Simple string representation of a publication. *)
 val string_of_publication : publication -> string
+
+(** {1 DBLP queries} *)
 
 (** Find an author. *)
 val author : ?hits:int -> string -> author list
