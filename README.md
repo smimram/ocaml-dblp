@@ -1,4 +1,4 @@
-# ocaml-dblp
+# DBLP in OCaml
 
 OCaml library to use the API of the bibliographic [DBLP](http://dblp.org) database. It provides functions to search for
 
@@ -10,6 +10,8 @@ and should be fairly explicit and simple to use. To get started you can have a l
 
 - [the library documentation](https://smimram.github.io/ocaml-dblp/dblp/DBLP/)
 - [a simple example program](test/test.ml)
+
+We also provide a standalone program in order to extract information from DBLP (see below).
 
 ## DBLP commandline program
 
