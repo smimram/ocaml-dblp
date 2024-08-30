@@ -1,6 +1,21 @@
-(library
+(executable
  (public_name dblp)
  (name dblp)
- (wrapped false)
- (libraries cohttp cohttp-lwt-unix yojson)
+ (libraries dblp-lib)
+ (package dblp)
+)
+
+(rule
+ (alias runtest)
+ (action (run ./dblp.exe author mimram))
+)
+
+(rule
+ (alias runtest)
+ (action (run ./dblp.exe find mimram type))
+)
+
+(rule
+ (alias runtest)
+ (action (run ./dblp.exe venue lics))
 )

@@ -1,24 +1,15 @@
-# DBLP in OCaml
+# DBLP
 
-OCaml library to use the API of the bibliographic [DBLP](http://dblp.org) database. It provides functions to search for
+This provides a standalone program in order to extract information from the bibliographic [DBLP](http://dblp.org) database, which is mainly useful for quickly extracting bibtex entries.
 
-- authors
-- publications
-- venues
-
-and should be fairly explicit and simple to use. To get started you can have a look at
-
-- [the library documentation](https://smimram.github.io/ocaml-dblp/dblp/DBLP/)
-- [a simple example program](test/test.ml)
-
-We also provide a standalone program in order to extract information from DBLP (see below).
+We also provide an OCaml library to use the API to query DBLP, which provides functions to search for authors, publications and venues.
 
 ## DBLP commandline program
 
-We also provide a commandline program in order to query DBLP from the commandline. It can be installed with
+We provide a commandline program in order to query DBLP from the commandline. It can be installed with
 
 ```bash
-opam install dblp-cmdline
+opam install dblp
 ```
 
 It provides the `dblp` program which takes as argument a command (the kind of query you want to make) and a query (a list of words to look for).
@@ -100,6 +91,19 @@ $ dblp venue lics
 
 LICS: ACM/IEEE Symposium on Logic in Computer Science (LICS) (Conference or Workshop)
 ```
+
+## Library
+
+The above program is based on an OCaml library to query DBLP, which can be installed with
+
+```bash
+opam install dblp-lib
+```
+
+and should be fairly explicit and simple to use. To get started you can have a look at
+
+- [the library documentation](https://smimram.github.io/ocaml-dblp/dblp/DBLP/)
+- [a simple example program](test/test.ml)
 
 ## Improving
 
