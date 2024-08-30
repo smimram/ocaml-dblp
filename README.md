@@ -92,7 +92,7 @@ $ dblp venue lics
 LICS: ACM/IEEE Symposium on Logic in Computer Science (LICS) (Conference or Workshop)
 ```
 
-## Library
+## DBLP library
 
 The above program is based on an OCaml library to query DBLP, which can be installed with
 
