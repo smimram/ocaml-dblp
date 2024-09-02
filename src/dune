@@ -1,7 +1,7 @@
 (executable
  (public_name dblp)
  (name dblp)
- (libraries dblp-lib)
+ (libraries dblp-api)
  (package dblp)
 )
 

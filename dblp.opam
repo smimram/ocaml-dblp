@@ -12,7 +12,7 @@ doc: "https://smimram.github.io/ocaml-dblp/"
 bug-reports: "https://github.com/smimram/ocalm-dblp/issues"
 depends: [
   "dune" {>= "3.15"}
-  "dblp-lib"
+  "dblp-api"
   "odoc" {with-doc}
 ]
 build: [

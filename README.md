@@ -97,7 +97,7 @@ LICS: ACM/IEEE Symposium on Logic in Computer Science (LICS) (Conference or Work
 The above program is based on an OCaml library to query DBLP, which can be installed with
 
 ```bash
-opam install dblp-lib
+opam install dblp-api
 ```
 
 and should be fairly explicit and simple to use. To get started you can have a look at

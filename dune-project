@@ -10,7 +10,7 @@
 (documentation https://smimram.github.io/ocaml-dblp/)
 
 (package
- (name dblp-lib)
+ (name dblp-api)
  (synopsis "Library to query the DBLP bibliographic database")
  (description "The library provides helper functions to query the DBLP bibliographic database (authors, publications, and venue).")
  (depends cohttp cohttp-lwt-unix tls-lwt yojson)
@@ -20,6 +20,6 @@
  (name dblp)
  (synopsis "Commandline program do query the DBLP bibliographic database")
  (description "Program to query the DBLP bibliographic database and find authors, publications, and venues. It is particularily useful in order to retrieve bibtex entries.")
- (depends dblp-lib)
+ (depends dblp-api)
 )
 
