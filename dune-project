@@ -5,7 +5,7 @@
 (source (github smimram/ocalm-dblp))
 (authors "Samuel Mimram")
 (maintainers "Samuel Mimram")
-(license LGPL-3.0)
+(license LGPL-3.0-or-later)
 
 (documentation https://smimram.github.io/ocaml-dblp/)
 

@@ -6,7 +6,7 @@ description:
   "Program to query the DBLP bibliographic database and find authors, publications, and venues. It is particularily useful in order to retrieve bibtex entries."
 maintainer: ["Samuel Mimram"]
 authors: ["Samuel Mimram"]
-license: "LGPL-3.0"
+license: "LGPL-3.0-or-later"
 homepage: "https://github.com/smimram/ocalm-dblp"
 doc: "https://smimram.github.io/ocaml-dblp/"
 bug-reports: "https://github.com/smimram/ocalm-dblp/issues"
