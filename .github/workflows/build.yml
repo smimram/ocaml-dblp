@@ -15,10 +15,9 @@ jobs:
     - name: Build documentation
       run: dune build @doc
     - name: Upload website artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-pages-artifact@v2
       with:
         path: _build/default/_doc/_html
-        name: github-pages
   deploy:
     needs: build
     permissions:
