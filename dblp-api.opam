@@ -14,7 +14,7 @@ depends: [
   "dune" {>= "2.9"}
   "cohttp"
   "cohttp-lwt-unix"
-  "tls-lwt"
+  "ssl-lwt"
   "yojson"
   "odoc" {with-doc}
 ]

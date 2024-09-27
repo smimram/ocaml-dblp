@@ -13,7 +13,7 @@
  (name dblp-api)
  (synopsis "Library to query the DBLP bibliographic database")
  (description "The library provides helper functions to query the DBLP bibliographic database (authors, publications, and venue).")
- (depends cohttp cohttp-lwt-unix tls-lwt yojson)
+ (depends cohttp cohttp-lwt-unix ssl-lwt yojson)
 )
 
 (package
