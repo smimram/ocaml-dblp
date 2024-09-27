@@ -1,4 +1,4 @@
-0.1.0 (unreleased)
+0.1.0 (2024-09-27)
 =====
 
 - Initial release.
