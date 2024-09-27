@@ -1,4 +1,4 @@
-# DBLP
+# DBLP API in OCaml
 
 This provides a standalone program in order to extract information from the bibliographic [DBLP](http://dblp.org) database, which is mainly useful for quickly extracting bibtex entries.
 
