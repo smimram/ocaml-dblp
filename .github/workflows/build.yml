@@ -19,9 +19,10 @@ jobs:
     - name: Build documentation
       run: opam exec -- dune build @doc
     - name: Upload website artifact
-      uses: actions/upload-pages-artifact
+      uses: actions/upload-artifact@v4
       with:
         path: _build/default/_doc/_html
+        name: github-pages
   deploy:
     needs: build
     permissions:
