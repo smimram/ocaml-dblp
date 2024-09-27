@@ -1,4 +1,4 @@
-(lang dune 3.15)
+(lang dune 2.9)
 (name dblp)
 (version 0.1.0)
 (generate_opam_files true)
