@@ -4,8 +4,8 @@ version: "0.1.0"
 synopsis: "Library to query the DBLP bibliographic database"
 description:
   "The library provides helper functions to query the DBLP bibliographic database (authors, publications, and venue)."
-maintainer: ["Samuel Mimram"]
-authors: ["Samuel Mimram"]
+maintainer: ["Samuel Mimram <smimram@gmail.com>"]
+authors: ["Samuel Mimram <smimram@gmail.com>"]
 license: "LGPL-3.0-or-later"
 homepage: "https://github.com/smimram/ocalm-dblp"
 doc: "https://smimram.github.io/ocaml-dblp/"

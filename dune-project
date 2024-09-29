@@ -3,8 +3,8 @@
 (version 0.1.0)
 (generate_opam_files true)
 (source (github smimram/ocalm-dblp))
-(authors "Samuel Mimram")
-(maintainers "Samuel Mimram")
+(authors "Samuel Mimram <smimram@gmail.com>")
+(maintainers "Samuel Mimram <smimram@gmail.com>")
 (license LGPL-3.0-or-later)
 
 (documentation https://smimram.github.io/ocaml-dblp/)
