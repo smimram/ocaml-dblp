@@ -7,15 +7,18 @@
 
 (rule
  (alias runtest)
+ (package dblp)
  (action (run ./dblp.exe author mimram))
 )
 
 (rule
  (alias runtest)
+ (package dblp)
  (action (run ./dblp.exe find mimram type))
 )
 
 (rule
  (alias runtest)
+ (package dblp)
  (action (run ./dblp.exe venue lics))
 )
