@@ -12,6 +12,10 @@ jobs:
       run: dune build
     - name: Test
       run: dune runtest
+    - name: Install and test
+      run: |
+        dune install
+        dblp venue fscd
     - name: Build documentation
       run: dune build @doc
     - name: Upload website artifact
