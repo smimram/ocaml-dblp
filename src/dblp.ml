@@ -15,6 +15,21 @@ let select name l =
   let n = n-1 in
   try List.nth l n with _ -> invalid ()
 
+let commands =
+  [
+    "help", "Display some help about program usage.";
+    "find", "Find a publication with given keywords (also available with commands: publication / search).";
+    "show", "Show a publication in the browser using doi.";
+    "bibtex", "Find the bibtex entry for a publication.";
+    "bib", "Add bibtex entry for a publication to the bib file in the current directory.";
+    "bibshow", "Same as bib command followed by show command.";
+    "author", "Find an author.";
+    "venue", "Find a venue."
+  ]
+
+let commands_message =
+  "Available commands are\n\n" ^ String.concat "\n" (List.map (fun (c,d) -> "* " ^ c ^ ": " ^ d) commands) ^ "\n\nSupported flags are"
+
 let () =
   let cmd = ref "" in
   let args = ref [] in
@@ -29,6 +44,7 @@ let () =
     ]
   in
   let arg_usage = "dblp command arguments" in
+  let arg_usage = arg_usage ^ "\n\n" ^ commands_message ^ "\n" in
   Arg.parse
     arg_speclist
     (fun s -> if !cmd = "" then cmd := s else args := s :: !args)
@@ -70,7 +86,7 @@ let () =
   in
   match cmd with
   | "help" ->
-    print_endline (Arg.usage_string arg_speclist arg_usage);
+    print_string (Arg.usage_string arg_speclist arg_usage);
     exit 0
   | "publication"
   | "find"
