@@ -1,6 +1,6 @@
 (lang dune 2.9)
 (name dblp)
-(version 0.1.0)
+(version 0.1.1)
 (generate_opam_files true)
 (source (github smimram/ocaml-dblp))
 (authors "Samuel Mimram <smimram@gmail.com>")
