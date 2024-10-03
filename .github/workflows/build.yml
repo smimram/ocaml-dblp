@@ -9,9 +9,9 @@ jobs:
     - name: Install dependencies
       run: sudo apt-get -y install ocaml ocaml-dune ocaml-odoc libyojson-ocaml-dev libcohttp-lwt-unix-ocaml-dev liblwt-ssl-ocaml-dev
     - name: Build
-      run: dune build
+      run: make
     - name: Test
-      run: dune runtest
+      run: make test
     - name: Install and test
       run: |
         sudo dune install

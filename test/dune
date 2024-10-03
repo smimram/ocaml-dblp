@@ -4,6 +4,6 @@
 )
 
 (rule
- (alias runtest)
+ (alias citest)
  (action (run ./test.exe))
 )
