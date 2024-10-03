@@ -7,9 +7,9 @@ description:
 maintainer: ["Samuel Mimram <smimram@gmail.com>"]
 authors: ["Samuel Mimram <smimram@gmail.com>"]
 license: "LGPL-3.0-or-later"
-homepage: "https://github.com/smimram/ocalm-dblp"
+homepage: "https://github.com/smimram/ocaml-dblp"
 doc: "https://smimram.github.io/ocaml-dblp/"
-bug-reports: "https://github.com/smimram/ocalm-dblp/issues"
+bug-reports: "https://github.com/smimram/ocaml-dblp/issues"
 depends: [
   "dune" {>= "2.9"}
   "cohttp"
@@ -34,4 +34,4 @@ build: [
   ]
   ["dune" "install" "-p" name "--create-install-files" name]
 ]
-dev-repo: "git+https://github.com/smimram/ocalm-dblp.git"
+dev-repo: "git+https://github.com/smimram/ocaml-dblp.git"
