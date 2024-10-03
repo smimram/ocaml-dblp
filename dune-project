@@ -20,6 +20,9 @@
  (name dblp)
  (synopsis "Commandline program do query the DBLP bibliographic database")
  (description "Program to query the DBLP bibliographic database and find authors, publications, and venues. It is particularily useful in order to retrieve bibtex entries.")
- (depends dblp-api)
+ (depends
+   (ocaml (>= 4.10))
+   dblp-api
+ )
 )
 
