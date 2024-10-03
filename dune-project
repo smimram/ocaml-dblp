@@ -13,7 +13,9 @@
  (name dblp-api)
  (synopsis "Library to query the DBLP bibliographic database")
  (description "The library provides helper functions to query the DBLP bibliographic database (authors, publications, and venue).")
- (depends cohttp cohttp-lwt-unix lwt_ssl yojson)
+ (depends
+   (ocaml (>= 4.05))
+   cohttp cohttp-lwt-unix lwt_ssl yojson)
 )
 
 (package
