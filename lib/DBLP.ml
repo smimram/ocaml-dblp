@@ -60,8 +60,10 @@ let query ?hits ?first ?completion kind query =
   let url = "https://dblp.org/search/" ^ kind ^ "/api?format=json&" ^ hits ^ first ^ completion ^ "q=" ^ query in
   download url
 
+let debug = false
+
 let query_json ?hits kind q =
-  query ?hits kind q |> JSON.of_string
+  query ?hits kind q |> (fun s -> if debug then print_endline s; s) |> JSON.of_string
 
 let json_hits json =
   let hits =
@@ -106,13 +108,21 @@ type publication =
     publication_url : string;
     publication_ee : string;
     publication_access : string;
+
     publication_bib : unit -> string;
   }
 
 let publication ?hits query =
   query_json ?hits `Publication query |> json_hits |>
   List.map (fun publication ->
-      let find k = List.assoc_opt k publication |> Option.map JSON.string |> Option.value ~default:"" in
+      let find k =
+        let rec string = function
+          | `String s -> s
+          | `List l -> List.map string l |> String.concat ", "
+          | _ -> failwith "string expected"
+        in
+        List.assoc_opt k publication |> Option.map string |> Option.value ~default:""
+      in
       let publication_authors =
         let author = List.assoc "authors" publication |> JSON.associate "author" in
         match author with
